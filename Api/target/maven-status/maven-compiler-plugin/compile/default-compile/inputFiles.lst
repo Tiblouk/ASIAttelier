@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\yamin\Desktop\CPE\ASI\ASIAttelier\Api\src\main\java\com\sp\rest\AccountRestCrt.java
 C:\Users\yamin\Desktop\CPE\ASI\ASIAttelier\Api\src\main\java\com\sp\service\PlayerService.java
 C:\Users\yamin\Desktop\CPE\ASI\ASIAttelier\Api\src\main\java\com\sp\service\CardService.java
@@ -13,3 +14,19 @@ C:\Users\yamin\Desktop\CPE\ASI\ASIAttelier\Api\src\main\java\com\sp\service\Acco
 C:\Users\yamin\Desktop\CPE\ASI\ASIAttelier\Api\src\main\java\com\sp\model\Card.java
 C:\Users\yamin\Desktop\CPE\ASI\ASIAttelier\Api\src\main\java\com\sp\repository\PlayerRepository.java
 C:\Users\yamin\Desktop\CPE\ASI\ASIAttelier\Api\src\main\java\com\sp\model\Player.java
+=======
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\model\Account.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\model\Player.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\model\Card.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\service\PlayerService.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\rest\AccountRestCrt.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\repository\AccountRepository.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\service\CardService.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\rest\CardRestCrt.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\repository\PlayerRepository.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\SpAppCard.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\repository\CardRepository.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\rest\PlayerRestCrt.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\com\sp\service\AccountService.java
+C:\Users\aboub\ASW\ASIAttelier\Api\src\main\java\SwaggerConfig.java
+>>>>>>> 2019f828cdcfd52bcb90efa9286b01923614284d

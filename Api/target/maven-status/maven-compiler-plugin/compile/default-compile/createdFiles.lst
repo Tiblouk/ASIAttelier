@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 com\sp\model\Card.class
 com\sp\rest\PlayerRestCrt.class
 com\sp\repository\AccountRepository.class
@@ -11,5 +12,14 @@ SwaggerConfig.class
 com\sp\SpAppCard.class
 com\sp\rest\CardRestCrt.class
 com\sp\model\Account.class
-com\sp\service\PlayerService.class
+=======
+com\sp\model\Player.class
+com\sp\rest\PlayerRestCrt.class
 com\sp\repository\CardRepository.class
+com\sp\repository\PlayerRepository.class
+com\sp\SpAppCard.class
+com\sp\rest\CardRestCrt.class
+com\sp\model\Card.class
+com\sp\service\CardService.class
+>>>>>>> 2019f828cdcfd52bcb90efa9286b01923614284d
+com\sp\service\PlayerService.class
