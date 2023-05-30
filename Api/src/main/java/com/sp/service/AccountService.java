@@ -1,6 +1,7 @@
 package com.sp.service;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,16 @@ public class AccountService {
 
 	@Autowired
 	PlayerRepository pRepository;
+	
+    @Autowired
+	PlayerService pService;
 
 	public void addAccount(Account a) {
 		Account createdaccount = aRepository.save(a);
 		System.out.println(createdaccount);
 	}
 	
-	public Account getAccount(int id) {
+	public Account getAccount(Integer id) {
 		Optional<Account> cOpt = aRepository.findById(id);
 		if (cOpt.isPresent()) {
 			return cOpt.get();
@@ -48,6 +52,11 @@ public class AccountService {
 		}else {
 			return null;
 		}
+	}
+
+	public List<Integer> getAccountPlayers(Integer ida) {
+		Account a = getAccount(ida);
+		return a.getPlayers();
 	}
 
     public boolean addPlayerAccount(int a, int p){
@@ -79,4 +88,9 @@ public class AccountService {
         }
 		return false;
     }
+
+	public boolean logIn(String username, String password ){
+		Account account = aRepository.findByUsername(username).get(0);
+		return account.LogIn(password);
+	}
 }

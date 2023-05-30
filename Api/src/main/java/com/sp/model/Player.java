@@ -1,5 +1,6 @@
 package com.sp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.GeneratedValue;
@@ -11,24 +12,24 @@ import javax.persistence.Entity;
 public class Player {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     private String name;
 
     @ElementCollection
-    private List<Integer> cards;
+    private List<Integer> cards = new ArrayList<>();;
 
     public Player() {
     }
 
-    public Player(int id, String name, List<Integer> cards) {
+    public Player(Integer id, String name, List<Integer> cards) {
         super();
         this.id = id;
         this.name = name;
         this.cards = cards;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -40,7 +41,7 @@ public class Player {
         return cards;
     }
 
-    public void addCard(int id) {
+    public void addCard(Integer id) {
         cards.add(id);
     }
 
@@ -50,6 +51,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player [" + this.id + "]: cards:[" + this.cards + "], name:" + this.name;
+        return String.format("Player [%d]: cards: %s, name: %s", this.id, this.cards, this.name);
     }
 }

@@ -1,5 +1,8 @@
 package com.sp.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,11 +14,14 @@ import com.sp.model.Card;
 import com.sp.service.CardService;
 
 @RestController
+@RequestMapping("/")
+@Api(tags = "Card")
 public class CardRestCrt {
     @Autowired
 	CardService cService;
 	
 	@RequestMapping(method=RequestMethod.POST,value="/card")
+	@ApiOperation(value = "Endpoint Summary", notes = "Endpoint Description")
 	public void addCard(@RequestBody Card card) {
 		cService.addCard(card);
 	}

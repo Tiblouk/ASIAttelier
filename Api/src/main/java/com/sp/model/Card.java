@@ -9,7 +9,7 @@ public class Card {
     @Id
 	@GeneratedValue
     private Integer id;
-    private int number;
+    private Integer number;
     private String color;
     private double price;
 
@@ -17,7 +17,7 @@ public class Card {
 
     }
     
-    public Card(int id, int number, String color, double price) {
+    public Card(Integer id, Integer number, String color, double price) {
         super();
         this.id = id;
         this.number = number;
@@ -59,6 +59,6 @@ public class Card {
 
 	@Override
 	public String toString() {
-		return "Card ["+this.id+"]: color:"+this.color+", number:"+this.number+", prix:"+this.price;
+        return String.format("Card [%d]: color: %s, number: %d, price: %.2f", this.id, this.color, this.number, this.price);
 	}
 }

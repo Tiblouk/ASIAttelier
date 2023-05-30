@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.ElementCollection;
 
@@ -11,13 +12,13 @@ import javax.persistence.ElementCollection;
 public class Account {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
 
     @ElementCollection
-    private List<Integer> Players;
+    private List<Integer> players = new ArrayList<>();
 
 
     public Account(){
@@ -26,46 +27,50 @@ public class Account {
 
     public Account(String u, String p){
         super();
-        this.userName = u;
-        this.passWord = p;
+        this.username = u;
+        this.password = p;
     }
 
     public boolean LogIn(String p){
-        if(p == this.passWord)
+        if(p == this.password)
             return true;
         return false;
     }
 
     public boolean ChangePassWord(String op, String np){
-        if(op == this.passWord){
-            this.passWord = np;
+        if(op.equals(password)){
+            this.password = np;
             return true;
         }
         return false;
     }
 
     public List<Integer> getPlayers(){
-        return Players;
+        return this.players;
+    }
+
+    public void setPlayers(List<Integer> players){
+        this.players = players;
     }
 
     public void removePlayer(Integer id) {
-        Players.remove(id);
+        this.players.remove(id);
     }
 
     public void addPlayer(int p){
-        Players.add(p);
+        this.players.add(p);
     }
 
     public String getUserName() {
-        return this.userName;
+        return this.username;
     }
 
     public void setUserName(String u) {
-        this.userName = u;
+        this.username = u;
     }
     
 	@Override
 	public String toString() {
-		return "Account ["+this.id+"]: Username:"+this.userName+", Playes:"+this.Players;
+		return String.format("Account [%d]: Username: %s, Players: %s", this.id, this.username, this.players);
 	}
 }

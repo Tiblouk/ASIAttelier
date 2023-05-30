@@ -10,6 +10,6 @@ import com.sp.model.Account;
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Integer> {
 
-	public List<Account> findByUserName(String user);
+	public List<Account> findByUsername(String user);
 
 }
