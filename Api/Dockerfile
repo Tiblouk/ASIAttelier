@@ -7,7 +7,7 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Run
-FROM amazoncorretto:17
+FROM openjdk:17-jdk-slim
 ENV MYAPP_HOME /opt/myapp
 WORKDIR $MYAPP_HOME
 COPY --from=myapp-build $MYAPP_HOME/target/*.jar $MYAPP_HOME/myapp.jar
