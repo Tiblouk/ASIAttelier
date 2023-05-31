@@ -39,15 +39,15 @@ services:
           - database
 
 
-    # httpd:
-    #     build: ./web
-    #     container_name: httpd
-    #     ports: 
-    #         - 5000:80
-    #     networks: 
-    #         - mynetwork
-    #     depends_on: 
-    #         - backend
+    httpd:
+        build: ./web
+        container_name: httpd
+        ports: 
+            - 5000:80
+        networks: 
+            - mynetwork
+        depends_on: 
+            - backend
 
 volumes:
   pgadmin-data:
