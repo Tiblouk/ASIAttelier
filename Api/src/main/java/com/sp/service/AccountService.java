@@ -35,6 +35,9 @@ public class AccountService {
 			return null;
 		}
 	}
+	public boolean update(Account a){
+		return true;
+	}
 
 	public Iterable<Account> getAccounts(Iterable<Integer> ids) {
 		Iterable<Account> cOpt = aRepository.findAllById(ids);

@@ -9,6 +9,7 @@ public class Card {
     @Id
 	@GeneratedValue
     private Integer id;
+    
     private Integer number;
     private String color;
     private double price;
