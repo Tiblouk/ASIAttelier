@@ -22,9 +22,14 @@ public class AccountService {
     @Autowired
 	PlayerService pService;
 
-	public void addAccount(Account a) {
-		Account createdaccount = aRepository.save(a);
-		System.out.println(createdaccount);
+	public boolean addAccount(Account a) {
+		if(aRepository.findByUsername(a.getUserName()).isEmpty()){
+			aRepository.save(a);
+			
+			if(!aRepository.findById(a.getId()).isEmpty())
+				return true;
+		}
+		return false;
 	}
 	
 	public Account getAccount(Integer id) {
@@ -35,6 +40,12 @@ public class AccountService {
 			return null;
 		}
 	}
+
+	public Account getAccount(String username) {
+		Account account = aRepository.findByUsername(username).get(0);
+		return account;
+	}
+
 	public boolean update(Account a){
 		return true;
 	}

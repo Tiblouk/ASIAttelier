@@ -22,15 +22,17 @@ function register() {
       formData.append("user", username);
       formData.append("pass", password);
 
-      fetch("/account", {
+      fetch("/accounts/add", {
         method: "POST",
         body: formData
       })
         .then((response) => response.json())
         .then((data) => {
           // Process the response data
-          console.log(data);
-      // window.location.href = '/'
+          if(data){
+            window.location.href = '/login.html'
+          }
+      
         })
         .catch((error) => {
           console.error("Error:", error);

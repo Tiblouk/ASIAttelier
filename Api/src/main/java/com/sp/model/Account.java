@@ -32,7 +32,7 @@ public class Account {
     }
 
     public boolean LogIn(String p){
-        if(p == this.password)
+        if(this.password.equals(p))
             return true;
         return false;
     }
@@ -68,7 +68,10 @@ public class Account {
     public void setUserName(String u) {
         this.username = u;
     }
-    
+    public Integer getId()
+    {
+        return this.id;
+    }
 	@Override
 	public String toString() {
 		return String.format("Account [%d]: Username: %s, Players: %s", this.id, this.username, this.players);

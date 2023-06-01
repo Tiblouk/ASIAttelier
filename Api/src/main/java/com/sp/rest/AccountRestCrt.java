@@ -30,10 +30,10 @@ public class AccountRestCrt {
 
     @RequestMapping(method=RequestMethod.POST, value="/accounts/add")
     @ApiOperation(value = "Add an Account", notes = "Add the account that is content in Json to the repository")
-    public void addAccount(@RequestParam("user") String user,
-                           @RequestParam("pass") String pass)
+    public boolean addAccount(@RequestParam("user") String user,
+                              @RequestParam("pass") String pass)
     {
-        aService.addAccount(new Account(user, pass));
+        return aService.addAccount(new Account(user, pass));
     }
     
 	@RequestMapping(method=RequestMethod.POST, value="/accounts/login")
@@ -50,8 +50,14 @@ public class AccountRestCrt {
         return aService.update(account);
     }
     
-    @RequestMapping(method=RequestMethod.GET, value="/account/{id}")
-    public Account getAccount(@PathVariable String id) {
+    @RequestMapping(method=RequestMethod.GET, value="/accounts/{username}")
+    public Account getAccountById(@PathVariable String username) {
+        Account a = aService.getAccount(username);
+        return a;
+    }
+
+    @RequestMapping(method=RequestMethod.GET, value="/accounts/{id}")
+    public Account getAccountByUser(@PathVariable String id) {
         Account a = aService.getAccount(Integer.valueOf(id));
         return a;
     }

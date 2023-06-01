@@ -1,3 +1,4 @@
+let token = ""
 function isAuthenticated() {
     const cookies = document.cookie;
     const cookieArray = cookies.split("; ");
@@ -5,7 +6,7 @@ function isAuthenticated() {
     for (let i = 0; i < cookieArray.length; i++) {
       const cookie = cookieArray[i].split("=");
       if (cookie[0] === "authToken") {
-        const token = cookie[1];
+        token = cookie[1];
         
         // Perform a validation check with the server to verify the token
         // Assuming the server responds with a boolean indicating validity
@@ -17,3 +18,9 @@ function isAuthenticated() {
     return false; // No valid token found
   }
   
+  if(!isAuthenticated()){
+    window.location.href = '/login.html'
+  }else{
+    window.location.href = '/'
+    console.log(token)
+  }
