@@ -3,7 +3,7 @@
 
 async function getCardsList() {
     let cardList = [];
-    let url = '/cards';
+    let url = 'http://localhost:8081/cards';
 
     let template = document.querySelector("#row");
     fetch(url, {

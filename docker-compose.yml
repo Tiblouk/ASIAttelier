@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+    # database:
+    #     container_name: postgres
+    #     build: ./bdd
+    #     # restart: always
+    #     ports:
+    #       - 5432:5432
+    #     volumes:
+    #       - postgres-data:/data/postgres
+    #     networks:
+    #       - mynetwork
+
+    backend:
+        build: ./Api
+        container_name: backend
+        ports: 
+            - 8081:8081
+        networks:
+            - mynetwork
+        # depends_on: 
+        #     - database
+
+    # pgadmin:
+    #     container_name: pgadmin4
+    #     image: dpage/pgadmin4:latest
+    #     # restart: always
+    #     ports:
+    #       - 5050:80
+    #     environment:
+    #       - PGADMIN_DEFAULT_EMAIL=admin@example.com
+    #       - PGADMIN_DEFAULT_PASSWORD=admin
+    #     volumes:
+    #       - pgadmin-data:/var/lib/pgadmin
+    #     networks:
+    #       - mynetwork
+    #     depends_on: 
+    #       - database
+
+
+    # httpd:
+    #     build: ./web
+    #     container_name: httpd
+    #     ports: 
+    #         - 5000:80
+    #     networks: 
+    #         - mynetwork
+    #     depends_on: 
+    #         - backend
+
+# volumes:
+#   pgadmin-data:
+#   postgres-data:
+
+networks:
+    mynetwork:

@@ -22,9 +22,12 @@ function register() {
       formData.append("user", username);
       formData.append("pass", password);
 
-      fetch("/account", {
+      fetch("http://localhost:8081/account", {
         method: "POST",
-        body: formData
+        body: JSON.stringify({
+            'userName': username,
+            'passWord': password
+        }),
       })
         .then((response) => response.json())
         .then((data) => {
