@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+    all_services:
+        build: .
+        container_name: all_services
+        ports: 
+            - 8081:8081
+        networks:
+            - mynetwork
+
+networks:
+    mynetwork:
