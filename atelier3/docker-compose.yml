@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+    game_service:
+        build: ./game_service
+        container_name: game_service
+        networks:
+            - mynetwork
+
+    cards_service:
+        build: ./cards_service
+        container_name: cards_service
+        networks:
+            - mynetwork
+
+    players_service:
+        build: ./players_service
+        container_name: players_service
+        networks:
+            - mynetwork
+
+    store_service:
+        build: ./store_service
+        container_name: store_service
+        networks:
+            - mynetwork
+
+    auth_service:
+        build: ./auth_service
+        container_name: auth_service
+        networks:
+            - mynetwork
+
+    proxy_service:
+        build: ./proxy_service
+        container_name: proxy_service
+        ports: 
+            - 8000:80
+        networks: 
+            - mynetwork
+        depends_on: 
+            - game_service
+            - cards_service
+            - players_service
+            - store_service
+            - auth_service
+
+networks:
+    mynetwork:
