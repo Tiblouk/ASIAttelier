@@ -1,7 +1,9 @@
 
+function sell(card, id_palyer) {
+  console.log("buy");
+}
 
-
-async function getCardsList() {
+async function getPlayerCardsList() {
     let cardList = [];
     let url = '/cards';
 
@@ -22,6 +24,7 @@ async function getCardsList() {
             let clone = document.importNode(template.content, true);
 
             newContent = clone.firstElementChild.innerHTML
+                .replace(/{{id}}/g, card.id)
                 .replace(/{{img_src}}/g, "card.png")
                 .replace(/{{color}}/g, card.color)
                 .replace(/{{number}}/g, card.number)
@@ -30,6 +33,12 @@ async function getCardsList() {
         
             let cardContainer = document.querySelector("#tableContent");
             cardContainer.appendChild(clone);
+            document.getElementById(card.id).onclick = function(e) {
+              if(confirm("Click to confirm or cancel")){
+                sell(card.id, 2)
+              }
+              // window.location.href = '/'
+            }
           });
 
         })
@@ -42,4 +51,4 @@ async function getCardsList() {
     });
 }
 
-getCardsList();
+getPlayerCardsList();

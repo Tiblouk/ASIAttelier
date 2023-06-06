@@ -33,7 +33,15 @@ function login(username, password) {
                 console.log(data)
               // Process the response data
               if(data){
-                document.cookie = `authToken=${username}; expires=Thu, 1 Jan 2024 12:00:00 UTC; path=/`;
+                // Calculate the new expiration date
+                const currentDate = new Date();
+                const expirationDate = new Date(currentDate.getFullYear() + 1, currentDate.getMonth(), currentDate.getDate());
+
+                // Format the expiration date string
+                const expires = expirationDate.toUTCString();
+
+                // Set the new expiration date in the cookie
+                document.cookie = `authToken=${username}; expires=${expires}; path=/`;
                 window.location.href = '/'
               }else{
                 alert('Mauvais identifiant')
