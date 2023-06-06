@@ -50,4 +50,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./atelier3/proxy_service
+          context: ./atelier3/proxy_service
