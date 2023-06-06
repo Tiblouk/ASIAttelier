@@ -20,25 +20,25 @@ public class PlayerRestCrt {
     @Autowired
 	PlayerService pService;
 
-    @RequestMapping(method=RequestMethod.POST,value="/player")
+    @RequestMapping(method=RequestMethod.POST,value="/players/add")
 	public void addPlayer(@RequestBody Player player) {
 		pService.addplayer(player);
 	}
-    @GetMapping("/player/addcard/{idp}/{idc}")
+    @GetMapping("/players/addcard/{idp}/{idc}")
     public boolean addCardPlayer(@PathVariable int idp, @PathVariable int idc) {
         return pService.addCardPlayer(idp, idc);
     }
-    @GetMapping("/player/rmcard/{idp}/{idc}")
+    @GetMapping("/players/rmcard/{idp}/{idc}")
     public boolean rmCardPlayer(@PathVariable int idp, @PathVariable int idc) {
         return pService.rmCardPlayer(idp, idc);
     }
 
-    @RequestMapping(method=RequestMethod.POST,value="/player/card")
+    @RequestMapping(method=RequestMethod.POST,value="/players/card")
 	public List<Integer> getPlayerCards(@RequestBody Player player) {
 		return pService.getPlayer(player.getId()).getCards();
 	}
 	
-	@RequestMapping(method=RequestMethod.GET,value="/player/{id}")
+	@RequestMapping(method=RequestMethod.GET,value="/players/{id}")
 	public Player getPlayer(@PathVariable String id) {
 		Player p = pService.getPlayer(Integer.valueOf(id));
 		return p;
