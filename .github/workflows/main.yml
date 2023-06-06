@@ -47,5 +47,7 @@ jobs:
       - name: Build and test players service
         run: mvn clean verify --file atelier3/players_service/pom.xml
       - name: Build and test proxy service
-        run: mvn clean verify --file atelier3/proxy_service/pom.xml
-  
+        uses: docker/build-push-action@v3
+        with:
+        # relative path to the place where source code with Dockerfile is located
+        context: ./atelier3/proxy_service
