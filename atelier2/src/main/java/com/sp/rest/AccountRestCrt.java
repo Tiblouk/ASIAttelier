@@ -34,7 +34,7 @@ public class AccountRestCrt {
     
 	@RequestMapping(method=RequestMethod.POST, value="/accounts/login")
     @ApiOperation(value = "Verify if account exist", notes = "Verify if account exist in the repository")
-    public  boolean logIn(@RequestParam("user") String user,
+    public boolean logIn(@RequestParam("user") String user,
 						  @RequestParam("pass") String pass) 
     {
         return aService.logIn(user, pass);
@@ -42,7 +42,7 @@ public class AccountRestCrt {
 
     @PutMapping("/accounts/update")
     @ApiOperation(value = "Update the account", notes = "Update the account if password match repository password")
-    public boolean addPlayerAccount(@RequestBody Account account) {
+    public boolean update(@RequestBody Account account) {
         return aService.update(account);
     }
     

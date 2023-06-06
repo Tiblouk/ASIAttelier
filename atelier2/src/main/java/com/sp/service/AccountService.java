@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sp.repository.PlayerRepository;
 import com.sp.repository.AccountRepository;
 import com.sp.model.Player;
 import com.sp.model.Account;
@@ -44,7 +43,13 @@ public class AccountService {
 	}
 
 	public boolean update(Account a){
-		return true;
+		Account acc = getAccount(a.getId());
+		if(acc.LogIn(a))
+		{
+			aRepository.save(a);
+			return true;
+		}
+		return false;
 	}
 
 	public Iterable<Account> getAccounts(Iterable<Integer> ids) {
