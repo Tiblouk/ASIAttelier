@@ -1,5 +1,7 @@
 package com.sp.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sp.model.Player;
 import com.sp.service.PlayerService;
 import com.sp.service.CardService;
-
+import com.sp.model.Card;
 
 @RestController
 public class PlayerRestCrt {
     @Autowired
 	PlayerService pService;
-    @Autowired
-    CardService cService;
 
     @RequestMapping(method=RequestMethod.POST,value="/player")
 	public void addPlayer(@RequestBody Player player) {
@@ -34,8 +34,8 @@ public class PlayerRestCrt {
     }
 
     @RequestMapping(method=RequestMethod.POST,value="/player/card")
-	public void getPlayerCards(@RequestBody Player player) {
-		cService.getCards(player.getCards());
+	public List<Integer> getPlayerCards(@RequestBody Player player) {
+		return pService.getPlayer(player.getId()).getCards();
 	}
 	
 	@RequestMapping(method=RequestMethod.GET,value="/player/{id}")

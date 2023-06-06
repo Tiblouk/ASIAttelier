@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sp.repository.PlayerRepository;
-import com.sp.repository.CardRepository;
 import com.sp.model.Player;
 import com.sp.model.Card;
 
@@ -16,7 +15,7 @@ public class PlayerService {
 	PlayerRepository pRepository;
 
 	@Autowired
-	CardRepository cRepository;
+	CardService cService;
 
 	public void addplayer(Player p) {
 		Player createdplayer = pRepository.save(p);
@@ -52,8 +51,8 @@ public class PlayerService {
     public boolean addCardPlayer(int p,int c){
         Optional<Player> cOpt = pRepository.findById(p);
 		if (cOpt.isPresent()) {
-            Optional<Card> co = cRepository.findById(c);
-            if (co.isPresent()) {
+            Card co = cService.getCard(c);
+            if (co != null) {
                 Player pl = cOpt.get();
                 pl.addCard(c);
                 pRepository.save(pl);
@@ -66,8 +65,8 @@ public class PlayerService {
     public boolean rmCardPlayer(int p,int c){
         Optional<Player> cOpt = pRepository.findById(p);
 		if (cOpt.isPresent()) {
-            Optional<Card> co = cRepository.findById(c);
-            if (co.isPresent()) {
+            Card co = cService.getCard(c);
+            if (co != null) {
                 Player pl = cOpt.get();
                 if(pl.getCards().contains(c)){
                     pl.removeCard(c);

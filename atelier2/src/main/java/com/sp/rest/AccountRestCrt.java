@@ -1,11 +1,7 @@
 package com.sp.rest;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +41,7 @@ public class AccountRestCrt {
     }
 
     @PutMapping("/accounts/update")
-    @ApiOperation(value = "Verify if account exist", notes = "Verify if account exist in the repository")
+    @ApiOperation(value = "Update the account", notes = "Update the account if password match repository password")
     public boolean addPlayerAccount(@RequestBody Account account) {
         return aService.update(account);
     }

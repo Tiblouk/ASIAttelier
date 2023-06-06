@@ -15,9 +15,6 @@ import com.sp.model.Account;
 public class AccountService {
     @Autowired
 	AccountRepository aRepository;
-
-	@Autowired
-	PlayerRepository pRepository;
 	
     @Autowired
 	PlayerService pService;
@@ -76,8 +73,8 @@ public class AccountService {
     public boolean addPlayerAccount(int a, int p){
         Optional<Account> cOpt = aRepository.findById(a);
 		if (cOpt.isPresent()) {
-            Optional<Player> po = pRepository.findById(p);
-            if (po.isPresent()) {
+            Player po = pService.getPlayer(p);
+            if (po != null) {
                 Account acc = cOpt.get();
                 acc.addPlayer(p);
                 aRepository.save(acc);
@@ -89,8 +86,8 @@ public class AccountService {
     public boolean rmPlayerAccount(int a, int p){
         Optional<Account> cOpt = aRepository.findById(a);
 		if (cOpt.isPresent()) {
-            Optional<Player> po = pRepository.findById(p);
-            if (po.isPresent()) {
+           Player po = pService.getPlayer(p);
+            if (po != null) {
                 Account acc = cOpt.get();
                 if(acc.getPlayers().contains(p))
                 {
