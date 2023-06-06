@@ -15,10 +15,6 @@ import com.sp.model.Account;
 public class AccountService {
     @Autowired
 	AccountRepository aRepository;
-
-	@Autowired
-	PlayerRepository pRepository;
-	
     @Autowired
 	PlayerService pService;
 
@@ -47,7 +43,20 @@ public class AccountService {
 	}
 
 	public boolean update(Account a){
-		return true;
+		Account cOpt = aRepository.findByUsername(a.getUserName()).get(0);
+		if(cOpt != null){
+			if(a.LogIn(cOpt))
+			{
+				for (Integer p : a.getPlayers()) {
+					Player pl = pService.getPlayer(p);
+					if(pl == null)
+						return false;
+				}
+				aRepository.save(a);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Iterable<Account> getAccounts(Iterable<Integer> ids) {
@@ -73,38 +82,9 @@ public class AccountService {
 		return a.getPlayers();
 	}
 
-    public boolean addPlayerAccount(int a, int p){
-        Optional<Account> cOpt = aRepository.findById(a);
-		if (cOpt.isPresent()) {
-            Optional<Player> po = pRepository.findById(p);
-            if (po.isPresent()) {
-                Account acc = cOpt.get();
-                acc.addPlayer(p);
-                aRepository.save(acc);
-                return true;
-            }
-        }
-		return false;
-    }
-    public boolean rmPlayerAccount(int a, int p){
-        Optional<Account> cOpt = aRepository.findById(a);
-		if (cOpt.isPresent()) {
-            Optional<Player> po = pRepository.findById(p);
-            if (po.isPresent()) {
-                Account acc = cOpt.get();
-                if(acc.getPlayers().contains(p))
-                {
-                    acc.removePlayer(p);
-                    aRepository.save(acc);
-                    return true;
-                }
-            }
-        }
-		return false;
-    }
-
 	public boolean logIn(String username, String password ){
-		Account account = aRepository.findByUsername(username).get(0);
+		List<Account> la = aRepository.findByUsername(username);
+		Account account = la.get(0);
 		return account.LogIn(password);
 	}
 }

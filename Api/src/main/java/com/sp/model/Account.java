@@ -37,6 +37,12 @@ public class Account {
         return false;
     }
 
+    public boolean LogIn(Account a){
+        if(this.password.equals(a.password))
+            return true;
+        return false;
+    }
+
     public boolean ChangePassWord(String op, String np){
         if(op.equals(password)){
             this.password = np;
@@ -72,6 +78,11 @@ public class Account {
     {
         return this.id;
     }
+    public String getPassword()
+    {
+        return this.password;
+    }
+
 	@Override
 	public String toString() {
 		return String.format("Account [%d]: Username: %s, Players: %s", this.id, this.username, this.players);
