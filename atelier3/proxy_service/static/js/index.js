@@ -21,5 +21,13 @@ function isAuthenticated() {
   if(!isAuthenticated()){
     window.location.href = '/login.html'
   }else{
-    console.log(token)
+    // Retrieve the JSON string from localStorage
+    const jsonData = localStorage.getItem('user');
+    
+    // Parse the JSON string back to an object
+    const data = JSON.parse(jsonData);
+
+    document.getElementById('playerId').textContent = data.username
+
+    console.log(data);
   }

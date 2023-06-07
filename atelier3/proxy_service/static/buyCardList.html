@@ -27,9 +27,9 @@
         <div class="item">
           <a href="/"><i class="home icon"></i></a>
         </div>
-        <div class="right menu">
-          <a class="item" href="./login.html">Login</a>
-          <a class="item" href="./register.html">Register</a>
+        <div class="right menu" id="div-items">
+          <div class="item" type="button" id="addplayer" style="cursor: pointer;"><a href="/addplayer.html">Add player</a></div>
+          <div class="item" type="button" id="logout" style="cursor: pointer;">Logout</div>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
                 <td>{{number}}</td>
                 <td>{{price}}</td>
                 <td>
-                    <div class="ui vertical animated button" tabindex="0">
+                    <div class="ui vertical animated button" tabindex="0" id="{{id}}">
                         <div class="hidden content">Buy</div>
                         <div class="visible content">
                             <i class="shop icon"></i>
@@ -103,7 +103,10 @@
 
     <script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./lib/Semantic-UI-CSS-master/semantic.js"></script>
-
-  <script src="./js/cards-list.js"></script>
+  
+    <script src="./js/index.js"></script>
+    <script src="./js/logout.js"></script>
+  <script src="./js/buy.js"></script>
+  <!-- <script src="./js/store.js"></script> -->
   </body>
 </html>
