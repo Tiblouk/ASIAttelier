@@ -21,5 +21,5 @@ function isAuthenticated() {
   if(!isAuthenticated()){
     window.location.href = '/login.html'
   }else{
-    console.log(token)
+    // alert('You are already connected')
   }

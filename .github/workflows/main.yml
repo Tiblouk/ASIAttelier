@@ -1,0 +1,55 @@
+name: CI devops 2023
+on:
+  #to begin you want to launch this job in main and develop
+  push:
+    branches:
+     - main
+  pull_request:
+
+jobs:
+  build-atelier2: 
+    runs-on: ubuntu-22.04
+    steps:
+      #checkout your github code using actions/checkout@v2.5.0
+      - uses: actions/checkout@v3
+    
+      #do the same with another action (actions/setup-java@v3) that enable to setup jdk 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: "adopt"
+
+      #finally build your app with the latest command
+      - name: Build and test with Maven
+        run: mvn clean verify --file atelier2/pom.xml
+      - name: Step quality gate 
+        run: mvn -B sonar:sonar -Dsonar.projectKey=atelier2 -Dsonar.organization=emre-kindy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file atelier2/pom.xml
+
+  build-atelier3: 
+    runs-on: ubuntu-22.04
+    steps:
+      #checkout your github code using actions/checkout@v2.5.0
+      - uses: actions/checkout@v3
+    
+      #do the same with another action (actions/setup-java@v3) that enable to setup jdk 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: "adopt"
+
+      #finally build your app with the latest command
+      - name: Build and test game service
+        run: mvn clean verify --file atelier3/game_service/pom.xml
+      - name: Build and test auth service
+        run: mvn clean verify --file atelier3/auth_service/pom.xml
+      - name: Build and test cards service
+        run: mvn clean verify --file atelier3/cards_service/pom.xml
+      - name: Build and test players service
+        run: mvn clean verify --file atelier3/players_service/pom.xml
+      - name: Build and test proxy service
+        uses: docker/build-push-action@v3
+        with:
+        # relative path to the place where source code with Dockerfile is located
+          context: ./atelier3/proxy_service
