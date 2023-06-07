@@ -29,5 +29,4 @@ function isAuthenticated() {
 
     document.getElementById('playerId').textContent = data.username
 
-    console.log(data);
   }
