@@ -18,13 +18,7 @@ services:
         container_name: players_service
         networks:
             - mynetwork
-
-    store_service:
-        build: ./store_service
-        container_name: store_service
-        networks:
-            - mynetwork
-
+            
     auth_service:
         build: ./auth_service
         container_name: auth_service

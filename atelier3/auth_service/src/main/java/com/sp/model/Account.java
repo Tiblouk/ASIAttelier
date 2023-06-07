@@ -12,13 +12,13 @@ import javax.persistence.ElementCollection;
 public class Account {
     @Id
     @GeneratedValue
-    private Integer id;
+    public Integer id;
 
-    private String username;
-    private String password;
+    public String username;
+    public String password;
 
     @ElementCollection
-    private List<Integer> players = new ArrayList<>();
+    public List<Integer> players = new ArrayList<>();
 
 
     public Account(){
@@ -78,11 +78,6 @@ public class Account {
     {
         return this.id;
     }
-    public String getPassword()
-    {
-        return this.password;
-    }
-
 	@Override
 	public String toString() {
 		return String.format("Account [%d]: Username: %s, Players: %s", this.id, this.username, this.players);

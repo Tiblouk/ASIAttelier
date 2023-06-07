@@ -15,6 +15,7 @@ public class Player {
     private Integer id;
 
     private String name;
+    private double currency = 10000;
 
     @ElementCollection
     private List<Integer> cards = new ArrayList<>();;
@@ -27,6 +28,10 @@ public class Player {
         this.id = id;
         this.name = name;
         this.cards = cards;
+    }
+
+    public boolean hasCard(Integer id) {
+        return cards.contains(id);
     }
 
     public Integer getId() {
@@ -47,6 +52,18 @@ public class Player {
 
     public void removeCard(Integer id) {
         cards.remove(id);
+    }
+
+    public void addmoney(double m){
+        currency += m;
+    }
+
+    public void rmmoney(double m){
+        currency -= m;
+    }
+
+    public double getbalance(){
+        return currency;
     }
 
     @Override

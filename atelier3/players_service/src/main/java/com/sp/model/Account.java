@@ -12,13 +12,13 @@ import javax.persistence.ElementCollection;
 public class Account {
     @Id
     @GeneratedValue
-    private Integer id;
+    public Integer id;
 
-    private String username;
-    private String password;
+    public String username;
+    public String password;
 
     @ElementCollection
-    private List<Integer> players = new ArrayList<>();
+    public List<Integer> players = new ArrayList<>();
 
 
     public Account(){
@@ -33,6 +33,12 @@ public class Account {
 
     public boolean LogIn(String p){
         if(this.password.equals(p))
+            return true;
+        return false;
+    }
+
+    public boolean LogIn(Account a){
+        if(this.password.equals(a.password))
             return true;
         return false;
     }

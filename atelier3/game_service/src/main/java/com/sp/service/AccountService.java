@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sp.repository.PlayerRepository;
 import com.sp.repository.AccountRepository;
 import com.sp.model.Player;
 import com.sp.model.Account;
@@ -15,9 +14,6 @@ import com.sp.model.Account;
 public class AccountService {
     @Autowired
 	AccountRepository aRepository;
-
-	@Autowired
-	PlayerRepository pRepository;
 	
     @Autowired
 	PlayerService pService;
@@ -47,7 +43,13 @@ public class AccountService {
 	}
 
 	public boolean update(Account a){
-		return true;
+		Account acc = getAccount(a.getId());
+		if(acc.LogIn(a))
+		{
+			aRepository.save(a);
+			return true;
+		}
+		return false;
 	}
 
 	public Iterable<Account> getAccounts(Iterable<Integer> ids) {
@@ -76,8 +78,8 @@ public class AccountService {
     public boolean addPlayerAccount(int a, int p){
         Optional<Account> cOpt = aRepository.findById(a);
 		if (cOpt.isPresent()) {
-            Optional<Player> po = pRepository.findById(p);
-            if (po.isPresent()) {
+            Player po = pService.getPlayer(p);
+            if (po != null) {
                 Account acc = cOpt.get();
                 acc.addPlayer(p);
                 aRepository.save(acc);
@@ -89,8 +91,8 @@ public class AccountService {
     public boolean rmPlayerAccount(int a, int p){
         Optional<Account> cOpt = aRepository.findById(a);
 		if (cOpt.isPresent()) {
-            Optional<Player> po = pRepository.findById(p);
-            if (po.isPresent()) {
+           Player po = pService.getPlayer(p);
+            if (po != null) {
                 Account acc = cOpt.get();
                 if(acc.getPlayers().contains(p))
                 {

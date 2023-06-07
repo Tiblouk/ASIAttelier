@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sp.repository.PlayerRepository;
 import com.sp.repository.AccountRepository;
 import com.sp.model.Player;
 import com.sp.model.Account;
@@ -15,6 +14,7 @@ import com.sp.model.Account;
 public class AccountService {
     @Autowired
 	AccountRepository aRepository;
+	
     @Autowired
 	PlayerService pService;
 
@@ -43,18 +43,11 @@ public class AccountService {
 	}
 
 	public boolean update(Account a){
-		Account cOpt = aRepository.findByUsername(a.getUserName()).get(0);
-		if(cOpt != null){
-			if(a.LogIn(cOpt))
-			{
-				for (Integer p : a.getPlayers()) {
-					Player pl = pService.getPlayer(p);
-					if(pl == null)
-						return false;
-				}
-				aRepository.save(a);
-				return true;
-			}
+		Account acc = getAccount(a.getId());
+		if(acc.LogIn(a))
+		{
+			aRepository.save(a);
+			return true;
 		}
 		return false;
 	}
@@ -82,9 +75,38 @@ public class AccountService {
 		return a.getPlayers();
 	}
 
+    public boolean addPlayerAccount(int a, int p){
+        Optional<Account> cOpt = aRepository.findById(a);
+		if (cOpt.isPresent()) {
+            Player po = pService.getPlayer(p);
+            if (po != null) {
+                Account acc = cOpt.get();
+                acc.addPlayer(p);
+                aRepository.save(acc);
+                return true;
+            }
+        }
+		return false;
+    }
+    public boolean rmPlayerAccount(int a, int p){
+        Optional<Account> cOpt = aRepository.findById(a);
+		if (cOpt.isPresent()) {
+           Player po = pService.getPlayer(p);
+            if (po != null) {
+                Account acc = cOpt.get();
+                if(acc.getPlayers().contains(p))
+                {
+                    acc.removePlayer(p);
+                    aRepository.save(acc);
+                    return true;
+                }
+            }
+        }
+		return false;
+    }
+
 	public boolean logIn(String username, String password ){
-		List<Account> la = aRepository.findByUsername(username);
-		Account account = la.get(0);
+		Account account = aRepository.findByUsername(username).get(0);
 		return account.LogIn(password);
 	}
 }
