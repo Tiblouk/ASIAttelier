@@ -43,14 +43,13 @@ public class AccountService {
 	}
 
 	public boolean update(Account a){
-		Account acc = getAccount(a.getUserName());
-		//if(acc.LogIn(a))
-		//{
-			acc.players = a.players;
-			aRepository.save(acc);
+		Account acc = getAccount(a.getId());
+		if(acc.LogIn(a))
+		{
+			aRepository.save(a);
 			return true;
-		//}
-		//return false;
+		}
+		return false;
 	}
 
 	public Iterable<Account> getAccounts(Iterable<Integer> ids) {
