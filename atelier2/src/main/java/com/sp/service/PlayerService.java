@@ -30,6 +30,15 @@ public class PlayerService {
 			return null;
 		}
 	}
+
+	public Player getPlayer(String name) {
+		if (!pRepository.findByName(name).isEmpty()) {
+			return pRepository.findByName(name).get(0);
+		} else {
+			return null;
+		}
+	}
+
 	public Iterable<Player> getPlayers(Iterable<Integer> ids) {
 		Iterable<Player> cOpt = pRepository.findAllById(ids);
 		if (cOpt != null) {

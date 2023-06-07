@@ -44,8 +44,15 @@ public class PlayerRestCrt {
 	
 	@RequestMapping(method=RequestMethod.GET,value="/players/{id}")
     @ApiOperation(value = "get a player by its ID", notes = "get a player by its ID")
-	public Player getPlayer(@PathVariable String id) {
+	public Player getPlayerById(@PathVariable String id) {
 		Player p = pService.getPlayer(Integer.valueOf(id));
+		return p;
+	}
+
+	@RequestMapping(method=RequestMethod.GET,value="/players/{name}")
+    @ApiOperation(value = "get a player by its ID", notes = "get a player by its ID")
+	public Player getPlayerByName(@PathVariable String name) {
+		Player p = pService.getPlayer(name);
 		return p;
 	}
 
