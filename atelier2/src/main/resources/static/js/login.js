@@ -42,6 +42,16 @@ function login(username, password) {
 
                 // Set the new expiration date in the cookie
                 document.cookie = `authToken=${username}; expires=${expires}; path=/`;
+                const data = {
+                  "username": username,
+                  "password": password
+                };
+                
+                // Convert the data to a JSON string
+                const jsonData = JSON.stringify(data);
+                
+                // Save the JSON string to localStorage
+                localStorage.setItem('user', jsonData);
                 window.location.href = '/'
               }else{
                 alert('Mauvais identifiant')

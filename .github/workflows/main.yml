@@ -57,7 +57,7 @@ jobs:
       
       - name: Build and test players service
         run: mvn clean verify --file atelier3/players_service/pom.xml
-      - name: Step quality gate for auth players
+      - name: Step quality gate for players service
         run: mvn -B sonar:sonar -Dsonar.projectKey=atelier3-players-service -Dsonar.organization=emre-kindy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.PLAYERS_TOKEN }} --file atelier3/players_service/pom.xml
 
       - name: Build and test proxy service
