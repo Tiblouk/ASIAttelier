@@ -23,6 +23,8 @@ jobs:
       #finally build your app with the latest command
       - name: Build and test with Maven
         run: mvn clean verify --file atelier2/pom.xml
+      - name: Step quality gate 
+        run: mvn -B sonar:sonar -Dsonar.projectKey=emre-kindy_tp-deveops -Dsonar.organization=emre-kindy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file atelier2/pom.xml
 
   build-atelier3: 
     runs-on: ubuntu-22.04
