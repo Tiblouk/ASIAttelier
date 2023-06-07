@@ -1,0 +1,8 @@
+com\sp\model\Card.class
+com\sp\SpAppCard.class
+com\sp\config\CorsConfig.class
+com\sp\service\CardService.class
+com\sp\rest\CardRestCrt.class
+com\sp\service\CardServiceImpl.class
+SwaggerConfig.class
+com\sp\repository\CardRepository.class

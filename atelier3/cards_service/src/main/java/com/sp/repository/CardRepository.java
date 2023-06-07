@@ -1,6 +1,6 @@
 package com.sp.repository;
 
-import com.card.service.model.Card;
+import com.sp.model.Card;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

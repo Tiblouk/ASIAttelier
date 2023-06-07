@@ -1,7 +1,7 @@
 package com.sp.service;
 
-import com.card.service.model.Card;
-import com.card.service.repository.CardRepository;
+import com.sp.model.Card;
+import com.sp.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

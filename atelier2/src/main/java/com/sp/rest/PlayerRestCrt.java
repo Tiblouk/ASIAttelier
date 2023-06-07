@@ -50,7 +50,7 @@ public class PlayerRestCrt {
 	}
 
 	@RequestMapping(method=RequestMethod.GET,value="/players/{name}")
-    @ApiOperation(value = "get a player by its ID", notes = "get a player by its ID")
+    @ApiOperation(value = "get a player by its name", notes = "get a player by its name")
 	public Player getPlayerByName(@PathVariable String name) {
 		Player p = pService.getPlayer(name);
 		return p;
