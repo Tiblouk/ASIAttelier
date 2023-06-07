@@ -21,11 +21,17 @@ public class CardRestCrt {
 	CardService cService;
 	
 	@RequestMapping(method=RequestMethod.POST,value="/cards/add")
-	@ApiOperation(value = "Add a card", notes = "Add the card that is content in Json to the repository")
+	@ApiOperation(value = "Add a card", notes = "Add the card from Json to the repository")
 	public void addCard(@RequestBody Card card) {
 		cService.addCard(card);
 	}
 	
+	@RequestMapping(method=RequestMethod.POST,value="/cards/adds")
+	@ApiOperation(value = "Add multiple cards", notes = "Add multiple cards from Json to the repository")
+	public void addCards(@RequestBody Iterable<Card> cards) {
+		cService.addCards(cards);
+	}
+
 	@RequestMapping(method=RequestMethod.GET,value="/cards/{id}")
 	@ApiOperation(value = "Get by ID", notes = "Get a card by its ID")
 	public Card getCard(@PathVariable String id) {

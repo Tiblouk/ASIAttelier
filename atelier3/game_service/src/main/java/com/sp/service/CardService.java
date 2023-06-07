@@ -18,6 +18,12 @@ public class CardService {
 		System.out.println(createdCard);
 	}
 	
+	public void addCards(Iterable<Card> cards){
+		for(Card card : cards){
+			this.addCard(card);
+		}
+	}
+
 	public Card getCard(int id) {
 		Optional<Card> cOpt = cRepository.findById(id);
 		if (cOpt.isPresent()) {
