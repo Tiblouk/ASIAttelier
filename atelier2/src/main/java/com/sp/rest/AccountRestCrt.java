@@ -47,18 +47,21 @@ public class AccountRestCrt {
     }
     
     @RequestMapping(method=RequestMethod.GET, value="/accounts/{username}")
+    @ApiOperation(value = "Get the account by username", notes = "Get the account by username")
     public Account getAccountById(@PathVariable String username) {
         Account a = aService.getAccount(username);
         return a;
     }
 
     @RequestMapping(method=RequestMethod.GET, value="/accounts/{id}")
+    @ApiOperation(value = "Get the account by id", notes = "Get the account by id")
     public Account getAccountByUser(@PathVariable String id) {
         Account a = aService.getAccount(Integer.valueOf(id));
         return a;
     }
 
     @RequestMapping(method=RequestMethod.GET, value="/accounts")
+    @ApiOperation(value = "Get all account in the db", notes = "Return all account contain in the db")
     public Iterable<Account> getAccounts() {
         return aService.getAccounts();
     }
