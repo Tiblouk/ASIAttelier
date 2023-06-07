@@ -1,15 +1,12 @@
 package com.sp.repository;
 
-import java.util.List;
-
+import com.card.service.model.Card;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sp.model.Card;
+import java.util.List;
 
 @Repository
 public interface CardRepository extends CrudRepository<Card, Integer> {
-
-	public List<Card> findByColor(String color);
-
+    List<Card> findByColor(String color);
 }
