@@ -18,8 +18,10 @@ public class PlayerService {
 	CardService cService;
 
 	public void addplayer(Player p) {
-		Player createdplayer = pRepository.save(p);
-		System.out.println(createdplayer);
+		if(pRepository.findByName(p.getName()).isEmpty()){
+			Player createdplayer = pRepository.save(p);
+			System.out.println(createdplayer);
+		}
 	}
 	
 	public Player getPlayer(int id) {
